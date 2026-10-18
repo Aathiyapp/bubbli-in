@@ -6,7 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Not Found (404) | Bubbli Technologies</title>
     <meta name="description" content="The page you are looking for does not exist. Return to Bubbli Technologies homepage." />
-    <meta name="robots" content="noindex, follow" />
+    <!-- Smart Client-Side Routing for Public Invitations -->
+    <script>
+        (function() {
+            var path = window.location.pathname;
+            var match = path.match(/\/invite\/([^/?#]+)/i);
+            if (match && match[1] && match[1] !== 'index.html') {
+                var newUrl = '/invite/?id=' + encodeURIComponent(match[1]) + (window.location.search ? '&' + window.location.search.substring(1) : '') + window.location.hash;
+                window.location.replace(newUrl);
+            }
+        })();
+    </script>
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>

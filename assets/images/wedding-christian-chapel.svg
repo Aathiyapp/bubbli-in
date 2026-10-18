@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgChapel" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="50%" stop-color="#F1F5F9"/>
+        <stop offset="100%" stop-color="#E2E8F0"/>
+      </linearGradient>
+    </defs>
+    <rect width="500" height="600" rx="24" fill="url(#bgChapel)"/>
+    <g transform="translate(250, 240)">
+      <path d="M-90,140 L-90,-20 Q-90,-120 0,-150 Q90,-120 90,-20 L90,140 Z" fill="none" stroke="#94A3B8" stroke-width="2.5"/>
+      <path d="M-70,140 L-70,-15 Q-70,-95 0,-125 Q70,-95 70,-15 L70,140 Z" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
+      <g stroke="#C5A059" stroke-width="3">
+        <line x1="0" y1="-80" x2="0" y2="40"/>
+        <line x1="-30" y1="-40" x2="30" y2="-40"/>
+      </g>
+      <circle cx="0" cy="80" r="28" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
+      <g fill="#BE185D" opacity="0.85">
+        <circle cx="-12" cy="74" r="8"/>
+        <circle cx="8" cy="70" r="9" fill="#F43F5E"/>
+        <circle cx="0" cy="86" r="9" fill="#E11D48"/>
+      </g>
+    </g>
+    <text x="250" y="440" font-family="'Cinzel', serif" font-size="24" font-weight="bold" fill="#334155" text-anchor="middle" letter-spacing="3">HOLY MATRIMONY</text>
+    <text x="250" y="470" font-family="'Great Vibes', cursive" font-size="20" fill="#64748B" text-anchor="middle">United in Faith &amp; Love</text>
+  </svg>

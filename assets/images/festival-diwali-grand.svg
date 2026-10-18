@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgDiwali" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E1B4B"/>
+        <stop offset="60%" stop-color="#311042"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+      </linearGradient>
+      <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FEF08A"/>
+        <stop offset="40%" stop-color="#F59E0B"/>
+        <stop offset="80%" stop-color="#EF4444"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+    </defs>
+    <rect width="500" height="600" rx="24" fill="url(#bgDiwali)"/>
+    <g stroke="#FDE68A" stroke-width="1.5" opacity="0.7">
+      <path d="M100,80 L100,50 M100,80 L125,65 M100,80 L130,80 M100,80 L120,100 M100,80 L75,65 M100,80 L70,80 M100,80 L80,100"/>
+      <path d="M400,90 L400,60 M400,90 L425,75 M400,90 L430,90 M400,90 L420,110 M400,90 L375,75 M400,90 L370,90 M400,90 L380,110"/>
+    </g>
+    <g transform="translate(250, 310)">
+      <circle cx="0" cy="-50" r="60" fill="url(#flameGlow)"/>
+      <path d="M0,-95 Q-15,-50 0,-30 Q15,-50 0,-95" fill="#EF4444"/>
+      <path d="M0,-85 Q-10,-50 0,-32 Q10,-50 0,-85" fill="#FBBF24"/>
+      <path d="M0,-70 Q-5,-48 0,-34 Q5,-48 0,-70" fill="#FFF"/>
+      <path d="M-100,0 Q-110,40 0,55 Q110,40 100,0 Q60,15 0,15 Q-60,15 -100,0 Z" fill="#D97706" stroke="#FBBF24" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="100" ry="16" fill="#B45309"/>
+      <ellipse cx="0" cy="0" rx="85" ry="12" fill="#78350F"/>
+      <path d="M-30,50 L-45,95 L45,95 L30,50 Z" fill="#B45309" stroke="#F59E0B" stroke-width="2"/>
+      <g fill="#F59E0B">
+        <circle cx="-120" cy="90" r="14"/>
+        <circle cx="-80" cy="95" r="14" fill="#FBBF24"/>
+        <circle cx="-40" cy="98" r="14"/>
+        <circle cx="0" cy="100" r="15" fill="#FBBF24"/>
+        <circle cx="40" cy="98" r="14"/>
+        <circle cx="80" cy="95" r="14" fill="#FBBF24"/>
+        <circle cx="120" cy="90" r="14"/>
+      </g>
+    </g>
+    <text x="250" y="480" font-family="'Rozha One', serif" font-size="28" font-weight="bold" fill="#FDE68A" text-anchor="middle" letter-spacing="4">SHUBH DEEPAVALI</text>
+    <text x="250" y="515" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" fill="#FCD34D" text-anchor="middle" letter-spacing="2">FESTIVAL OF LIGHTS &amp; PROSPERITY</text>
+  </svg>

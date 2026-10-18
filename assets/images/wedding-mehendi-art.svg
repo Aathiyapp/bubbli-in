@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgMehendi" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#064E3B"/>
+        <stop offset="50%" stop-color="#047857"/>
+        <stop offset="100%" stop-color="#065F46"/>
+      </linearGradient>
+    </defs>
+    <rect width="500" height="600" rx="24" fill="url(#bgMehendi)"/>
+    <g transform="translate(250, 270)" stroke="#FDE68A" fill="none" stroke-width="1.5">
+      <circle cx="0" cy="0" r="140" stroke-dasharray="4,4" opacity="0.7"/>
+      <circle cx="0" cy="0" r="125" stroke-width="2"/>
+      <circle cx="0" cy="0" r="110" stroke-dasharray="2,3"/>
+      <circle cx="0" cy="0" r="90" stroke-width="2"/>
+      <circle cx="0" cy="0" r="60" stroke-dasharray="6,4"/>
+      <circle cx="0" cy="0" r="30" fill="#F59E0B" opacity="0.3"/>
+      <g id="petals">
+        <path d="M0,-90 C15,-115 25,-120 0,-138 C-25,-120 -15,-115 0,-90" fill="#D97706" opacity="0.4"/>
+        <path d="M0,-60 C10,-75 18,-80 0,-90 C-18,-80 -10,-75 0,-60" fill="#F59E0B" opacity="0.7"/>
+        <circle cx="0" cy="-125" r="3" fill="#FDE68A"/>
+      </g>
+      <use href="#petals" transform="rotate(30)"/>
+      <use href="#petals" transform="rotate(60)"/>
+      <use href="#petals" transform="rotate(90)"/>
+      <use href="#petals" transform="rotate(120)"/>
+      <use href="#petals" transform="rotate(150)"/>
+      <use href="#petals" transform="rotate(180)"/>
+      <use href="#petals" transform="rotate(210)"/>
+      <use href="#petals" transform="rotate(240)"/>
+      <use href="#petals" transform="rotate(270)"/>
+      <use href="#petals" transform="rotate(300)"/>
+      <use href="#petals" transform="rotate(330)"/>
+      <circle cx="0" cy="0" r="16" fill="#FDE68A"/>
+    </g>
+    <path d="M30,30 Q90,30 110,80 Q130,130 90,150 Q50,160 30,120 Z" fill="none" stroke="#F59E0B" stroke-width="2" opacity="0.6"/>
+    <path d="M470,30 Q410,30 390,80 Q370,130 410,150 Q450,160 470,120 Z" fill="none" stroke="#F59E0B" stroke-width="2" opacity="0.6"/>
+    <text x="250" y="470" font-family="'Rozha One', serif, sans-serif" font-size="24" font-weight="bold" fill="#FEF08A" text-anchor="middle" letter-spacing="3">MEHENDI KI RAAT</text>
+    <text x="250" y="500" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" fill="#A7F3D0" text-anchor="middle" letter-spacing="2">HENNA, MUSIC &amp; CELEBRATION</text>
+  </svg>

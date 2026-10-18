@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgHome" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FFFDF7"/>
+        <stop offset="100%" stop-color="#FEF3C7"/>
+      </linearGradient>
+      <radialGradient id="kalashGold" cx="40%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#FEF08A"/>
+        <stop offset="50%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#92400E"/>
+      </radialGradient>
+    </defs>
+    <rect width="500" height="600" rx="24" fill="url(#bgHome)"/>
+    <g transform="translate(250, 270)">
+      <ellipse cx="0" cy="120" rx="80" ry="18" fill="#78350F" opacity="0.2"/>
+      <ellipse cx="0" cy="-60" rx="36" ry="42" fill="#78350F"/>
+      <g fill="#15803D">
+        <path d="M-30,-50 C-70,-90 -90,-80 -100,-40 C-70,-35 -50,-40 -30,-50 Z"/>
+        <path d="M-15,-60 C-40,-115 -25,-125 0,-80 Z"/>
+        <path d="M15,-60 C40,-115 25,-125 0,-80 Z"/>
+        <path d="M30,-50 C70,-90 90,-80 100,-40 C70,-35 50,-40 30,-50 Z"/>
+      </g>
+      <path d="M-36,-25 L36,-25 L50,0 C80,50 65,110 0,115 C-65,110 -80,50 -50,0 Z" fill="url(#kalashGold)" stroke="#B45309" stroke-width="2"/>
+      <path d="M-40,40 L40,40 M-35,60 L35,60" stroke="#DC2626" stroke-width="4"/>
+      <g fill="#DC2626">
+        <path d="M-12,20 L12,20 M0,8 L0,32" stroke="#DC2626" stroke-width="3"/>
+      </g>
+    </g>
+    <text x="250" y="460" font-family="'Rozha One', serif" font-size="26" font-weight="bold" fill="#78350F" text-anchor="middle" letter-spacing="3">GRIHA PRAVESH</text>
+    <text x="250" y="490" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" fill="#B45309" text-anchor="middle" letter-spacing="2">HOUSEWARMING &amp; POOJA</text>
+  </svg>

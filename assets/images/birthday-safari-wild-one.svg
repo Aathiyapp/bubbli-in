@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgSafari" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FEF3C7"/>
+        <stop offset="100%" stop-color="#ECFDF5"/>
+      </linearGradient>
+    </defs>
+    <rect width="500" height="600" rx="24" fill="url(#bgSafari)"/>
+    <g fill="#15803D" opacity="0.75">
+      <path d="M-20,-20 Q80,20 120,90 Q80,70 20,40 Z"/>
+      <path d="M40,-20 Q120,40 140,120 Q90,90 30,40 Z" fill="#16A34A"/>
+      <path d="M520,-20 Q420,20 380,90 Q420,70 480,40 Z"/>
+      <path d="M460,-20 Q380,40 360,120 Q410,90 470,40 Z" fill="#16A34A"/>
+    </g>
+    <g transform="translate(250, 260)">
+      <circle cx="0" cy="0" r="90" fill="#F59E0B"/>
+      <g fill="#D97706">
+        <circle cx="0" cy="-90" r="18"/>
+        <circle cx="64" cy="-64" r="18"/>
+        <circle cx="90" cy="0" r="18"/>
+        <circle cx="64" cy="64" r="18"/>
+        <circle cx="0" cy="90" r="18"/>
+        <circle cx="-64" cy="64" r="18"/>
+        <circle cx="-90" cy="0" r="18"/>
+        <circle cx="-64" cy="-64" r="18"/>
+      </g>
+      <circle cx="0" cy="0" r="72" fill="#FDE68A"/>
+      <circle cx="-50" cy="-50" r="20" fill="#F59E0B"/>
+      <circle cx="-50" cy="-50" r="12" fill="#FED7AA"/>
+      <circle cx="50" cy="-50" r="20" fill="#F59E0B"/>
+      <circle cx="50" cy="-50" r="12" fill="#FED7AA"/>
+      <circle cx="-24" cy="-12" r="7" fill="#1F2937"/>
+      <circle cx="-22" cy="-14" r="2.5" fill="#FFFFFF"/>
+      <circle cx="24" cy="-12" r="7" fill="#1F2937"/>
+      <circle cx="26" cy="-14" r="2.5" fill="#FFFFFF"/>
+      <polygon points="0,4 -10,-4 10,-4" fill="#92400E"/>
+      <path d="M-10,12 Q0,22 10,12" fill="none" stroke="#92400E" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="-24,-65 0,-85 24,-65 14,-50 -14,-50" fill="#EAB308" stroke="#CA8A04" stroke-width="2"/>
+      <circle cx="0" cy="-85" r="3.5" fill="#EF4444"/>
+    </g>
+    <text x="250" y="430" font-family="'Outfit', sans-serif" font-size="42" font-weight="900" fill="#B45309" text-anchor="middle" letter-spacing="2">WILD ONE!</text>
+    <text x="250" y="465" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="bold" fill="#047857" text-anchor="middle" letter-spacing="3">FIRST BIRTHDAY SAFARI</text>
+  </svg>

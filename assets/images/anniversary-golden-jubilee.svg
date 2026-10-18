@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgAnniv" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1A0B0E"/>
+        <stop offset="60%" stop-color="#2D0F16"/>
+        <stop offset="100%" stop-color="#0F0507"/>
+      </linearGradient>
+      <linearGradient id="goldLaurel" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FEF08A"/>
+        <stop offset="50%" stop-color="#EAB308"/>
+        <stop offset="100%" stop-color="#92400E"/>
+      </linearGradient>
+    </defs>
+    <rect width="500" height="600" rx="24" fill="url(#bgAnniv)"/>
+    <g transform="translate(250, 240)">
+      <circle cx="-25" cy="0" r="50" fill="none" stroke="url(#goldLaurel)" stroke-width="8"/>
+      <circle cx="25" cy="0" r="50" fill="none" stroke="url(#goldLaurel)" stroke-width="8"/>
+      <polygon points="0,-70 5,-50 25,-48 10,-35 14,-15 0,-25 -14,-15 -10,-35 -25,-48 -5,-50" fill="#FFF"/>
+    </g>
+    <text x="250" y="380" font-family="'Cinzel', serif" font-size="38" font-weight="bold" fill="url(#goldLaurel)" text-anchor="middle" letter-spacing="4">50 YEARS</text>
+    <text x="250" y="415" font-family="'Great Vibes', cursive" font-size="28" fill="#FDE68A" text-anchor="middle">Golden Wedding Jubilee</text>
+    <text x="250" y="445" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="#FDA4AF" text-anchor="middle" letter-spacing="2">A LIFETIME OF ENDURING LOVE</text>
+  </svg>
