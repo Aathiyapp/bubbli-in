@@ -58,6 +58,19 @@ git push origin main
 2. Set **Source** to `Deploy from a branch`, choose branch `main` and folder `/ (root)`.
 3. Verify the Custom Domain is set to `bubbli.in` and **Enforce HTTPS** is enabled.
 
+## 🔗 Branded invitation short links
+
+The invitation studio stores invitation data in Cloudflare KV and shares links in the form `https://bubbli.in/invite/?id=...`. GitHub Pages serves the static site; a Cloudflare Worker handles only `/api/invitations/*`.
+
+To enable short links on a Cloudflare account that manages the `bubbli.in` DNS zone:
+
+1. Install Wrangler and authenticate: `npm install --save-dev wrangler` and `npx wrangler login`.
+2. Ensure the `bubbli.in` DNS zone is active in Cloudflare and its website record is proxied through Cloudflare.
+3. Deploy with `npx wrangler deploy`. Wrangler provisions the KV namespace from `wrangler.toml` on first deployment and writes its ID into the config.
+4. Keep the site's GitHub Pages deployment on `main`. Cloudflare's Worker route intercepts `/api/*`; the rest of the site continues to come from GitHub Pages.
+
+The Worker limits invitation uploads to 2 MiB and 20 creations per hour per IP. Invitation details are public to anyone with the link, as they are in the current self-contained links. Until the Worker and KV namespaces are deployed, the studio keeps sharing its existing full, self-contained URL so guest links continue to work.
+
 ---
 
 ## 🔑 External Dependencies & Configuration

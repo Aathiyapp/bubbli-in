@@ -319,7 +319,7 @@
 
   <!-- Public Viewer & Interactive Engine Logic -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', async function () {
       const urlParams = new URLSearchParams(window.location.search);
       const inviteId = urlParams.get('id') || window.location.hash.replace('#', '') || 'wedding-demo';
       const compressedData = urlParams.get('d');
@@ -333,8 +333,15 @@
         setTimeout(() => toastEl.classList.remove('show'), 2800);
       }
 
-      // Load invitation record
-      const record = BubbliStorage.getInvitationById(inviteId, compressedData);
+      // Load from the self-contained link or this browser first, then look up branded short links online.
+      let record = BubbliStorage.getInvitationById(inviteId, compressedData);
+      if (!record && !compressedData && inviteId !== 'wedding-demo') {
+        try {
+          record = await BubbliStorage.getInvitationOnline(inviteId);
+        } catch (error) {
+          console.warn('Could not load invitation from online storage.', error);
+        }
+      }
 
       let template = null;
       let eventData = null;
@@ -344,7 +351,7 @@
         template = BubbliTemplates.getTemplateById(record.templateId) || BubbliTemplates.getAllTemplates()[0];
         eventData = record.eventData;
         aspectRatio = record.aspectRatio || '4:5';
-      } else {
+      } else if (inviteId === 'wedding-demo') {
         // High quality demo fallback
         template = BubbliTemplates.getAllTemplates()[0];
         eventData = {
@@ -360,6 +367,16 @@
           message: 'Please join us to bless the couple.',
           rsvp: 'RSVP: Sharma & Iyer Families'
         };
+      } else {
+        document.getElementById('envelope-teaser-container')?.classList.add('hidden');
+        document.getElementById('main-experience-container').innerHTML = `
+          <section class="studio-card max-w-md mx-auto mt-10 p-8 rounded-3xl text-center space-y-3" role="alert">
+            <div class="text-4xl" aria-hidden="true">💌</div>
+            <h1 class="text-xl font-bold text-white font-heading">We couldn’t find this invitation</h1>
+            <p class="text-sm text-slate-300">Please check the link with the person who invited you.</p>
+            <a href="../" class="inline-flex items-center justify-center mt-2 px-5 py-3 rounded-xl bg-slate-800 text-white font-semibold">Go to Bubbli</a>
+          </section>`;
+        return;
       }
 
       // Update titles & metadata

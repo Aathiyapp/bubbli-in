@@ -59,7 +59,13 @@
   function generateUniqueId(names = '', eventType = 'event') {
     const cleanNames = names.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase().slice(0, 20).replace(/^-+|-+$/g, '') || 'celebration';
     const cleanEvent = eventType.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase().slice(0, 10);
-    const randomHex = Math.floor(1000 + Math.random() * 9000);
+    const randomBytes = new Uint8Array(10);
+    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+      crypto.getRandomValues(randomBytes);
+    } else {
+      for (let i = 0; i < randomBytes.length; i++) randomBytes[i] = Math.floor(Math.random() * 256);
+    }
+    const randomHex = Array.from(randomBytes, byte => byte.toString(16).padStart(2, '0')).join('');
     return `${cleanEvent}-${cleanNames}-${randomHex}`;
   }
 
@@ -172,7 +178,7 @@
         console.warn('LocalStorage save error:', err);
       }
 
-      // 2. Build URL with compressed payload for 100% permanent cross-device sharing
+      // Keep a self-contained link as a fallback until the online invitation API is deployed.
       const compressedPayload = compressData({
         id: id,
         t: templateId,
@@ -183,15 +189,40 @@
       // Public URL formulation
       // Resolves properly across root, local development, and bubbli.in
       const baseUrl = window.location.origin + window.location.pathname.replace(/[^/]*$/, '');
-      const shareUrl = `${baseUrl}invite/?id=${encodeURIComponent(id)}&d=${compressedPayload}`;
+      const shareUrl = `${baseUrl}invite/?id=${encodeURIComponent(id)}`;
+      const fallbackShareUrl = `${shareUrl}&d=${compressedPayload}`;
 
       return {
         id: id,
         editSecret: editSecret,
         shareUrl: shareUrl,
+        fallbackShareUrl: fallbackShareUrl,
         compressedPayload: compressedPayload,
         record: record
       };
+    },
+
+    saveInvitationOnline: async function (record) {
+      const response = await fetch('/api/invitations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: record.id,
+          templateId: record.templateId,
+          eventData: record.eventData,
+          aspectRatio: record.aspectRatio,
+          publishedAt: record.publishedAt
+        })
+      });
+      if (!response.ok) throw new Error(`Invitation storage failed (${response.status})`);
+      return response.json();
+    },
+
+    getInvitationOnline: async function (id) {
+      const response = await fetch(`/api/invitations/${encodeURIComponent(id)}`, { cache: 'no-store' });
+      if (response.status === 404) return null;
+      if (!response.ok) throw new Error(`Invitation lookup failed (${response.status})`);
+      return response.json();
     },
 
     getInvitationById: function (id, compressedData = null) {

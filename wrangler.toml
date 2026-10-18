@@ -1,0 +1,11 @@
+name = "bubbli-invitation-api"
+main = "workers/invitations.js"
+compatibility_date = "2026-10-18"
+workers_dev = false
+
+[[routes]]
+pattern = "bubbli.in/api/*"
+zone_name = "bubbli.in"
+
+[[kv_namespaces]]
+binding = "INVITATIONS"

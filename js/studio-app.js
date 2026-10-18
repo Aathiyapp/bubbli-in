@@ -725,33 +725,40 @@ document.addEventListener('DOMContentLoaded', function () {
   // ----------------------------------------------------
   // STEP 5: PUBLISH & SHARE
   // ----------------------------------------------------
-  function renderPublishScreen() {
+  async function renderPublishScreen() {
     const publishResult = BubbliStorage.publishInvitation(currentTemplateId, activeData, {
       aspectRatio: currentAspectRatio
     });
-
-    if (publishLinkInput) {
-      publishLinkInput.value = publishResult.shareUrl;
-    }
-    if (btnViewPublicPage) {
-      btnViewPublicPage.href = publishResult.shareUrl;
-    }
 
     // Prefill WhatsApp text
     const names = activeData.coupleNames || 'Our Celebration';
     const date = activeData.date || '';
     const venue = activeData.venue || '';
-    const waText = encodeURIComponent(
-      `✨ You are joyfully invited!\n\n` +
-      `🎉 ${activeData.headline || 'Celebration Invitation'}\n` +
-      `👤 ${names}\n` +
-      `📅 ${date}\n` +
-      `📍 ${venue}\n\n` +
-      `Tap below to view full invitation card & directions:\n${publishResult.shareUrl}`
-    );
+    const linkStatus = document.getElementById('publish-link-status');
+    const updateShareLink = (url) => {
+      if (publishLinkInput) publishLinkInput.value = url;
+      if (btnViewPublicPage) btnViewPublicPage.href = url;
+      const waText = encodeURIComponent(
+        `✨ You are joyfully invited!\n\n` +
+        `🎉 ${activeData.headline || 'Celebration Invitation'}\n` +
+        `👤 ${names}\n` +
+        `📅 ${date}\n` +
+        `📍 ${venue}\n\n` +
+        `Tap below to view your invitation:\n${url}`
+      );
+      if (btnWhatsappShare) btnWhatsappShare.href = `https://wa.me/?text=${waText}`;
+    };
 
-    if (btnWhatsappShare) {
-      btnWhatsappShare.href = `https://wa.me/?text=${waText}`;
+    // Keep a self-contained link ready as a fallback while saving the branded short link.
+    updateShareLink(publishResult.fallbackShareUrl);
+    if (linkStatus) linkStatus.textContent = 'Creating your short link…';
+    try {
+      await BubbliStorage.saveInvitationOnline(publishResult.record);
+      updateShareLink(publishResult.shareUrl);
+      if (linkStatus) linkStatus.textContent = 'Short link ready to share.';
+    } catch (error) {
+      console.warn('Could not save invitation online; using a self-contained link.', error);
+      if (linkStatus) linkStatus.textContent = 'Short links are temporarily unavailable. This full link still works.';
     }
 
     if (typeof BubbliAnalytics !== 'undefined') {
