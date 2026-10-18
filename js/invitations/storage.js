@@ -182,7 +182,7 @@
         console.warn('LocalStorage save error:', err);
       }
 
-      // Keep a self-contained link as a fallback until the online invitation API is deployed.
+      // Keep a self-contained link available for legacy or offline sharing.
       const compressedPayload = compressData({
         id: id,
         t: templateId,
@@ -193,7 +193,7 @@
       // Public URL formulation
       // Resolves properly across root, local development, and bubbli.in
       const baseUrl = window.location.origin + window.location.pathname.replace(/[^/]*$/, '');
-      const shareUrl = `${baseUrl}invite/?id=${encodeURIComponent(id)}`;
+      const shareUrl = `${baseUrl}invite/index.html?id=${encodeURIComponent(id)}`;
       const fallbackShareUrl = `${shareUrl}&d=${compressedPayload}`;
 
       return {
