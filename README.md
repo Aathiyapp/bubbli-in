@@ -65,8 +65,8 @@ The invitation studio stores invitation data in Cloudflare KV and shares links i
 To enable short links on a Cloudflare account that manages the `bubbli.in` DNS zone:
 
 1. Install Wrangler and authenticate: `npm install --save-dev wrangler` and `npx wrangler login`.
-2. Deploy with `npx wrangler deploy`. Wrangler provisions the KV namespace from `wrangler.toml` on first deployment and writes its ID into the config. The command prints the Worker URL on the account's `workers.dev` subdomain.
-3. Set `window.BUBBLI_INVITATION_API_BASE` in `js/invitations/api-config.js` to that Worker URL, then push the change to `main` so the studio and invitation pages can call the API.
+2. Deploy with `npx wrangler deploy`. Wrangler provisions the KV namespace from `wrangler.toml` on first deployment and prints its ID and Worker URL.
+3. Set the `id` in the `INVITATIONS` binding in `wrangler.toml` and `window.BUBBLI_INVITATION_API_BASE` in `js/invitations/api-config.js` to the deployment values, then push the change to `main` so the studio and invitation pages can call the API.
 4. Keep the site's GitHub Pages deployment on `main`.
 
 The Worker limits invitation uploads to 2 MiB and 20 creations per hour per IP. Invitation details are public to anyone with the link, as they are in the current self-contained links. Until the Worker and KV namespaces are deployed and the API URL is configured, the studio keeps sharing its existing full, self-contained URL so guest links continue to work.

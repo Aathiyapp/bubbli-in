@@ -5,3 +5,4 @@ workers_dev = true
 
 [[kv_namespaces]]
 binding = "INVITATIONS"
+id = "e4669ed5d8c24e23a67276ebb594ac93"
