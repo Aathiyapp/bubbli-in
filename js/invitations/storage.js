@@ -15,6 +15,10 @@
   const STORAGE_KEY_PREFIX = 'bubbli_inv_';
   const DRAFT_KEY = 'bubbli_studio_active_draft';
   const REGISTRY_KEY = 'bubbli_published_registry';
+  const INVITATION_API_BASE = typeof window !== 'undefined' && window.BUBBLI_INVITATION_API_BASE
+    ? String(window.BUBBLI_INVITATION_API_BASE).replace(/\/$/, '')
+    : '';
+  const invitationApiUrl = (path) => `${INVITATION_API_BASE}/api/invitations${path}`;
 
   /**
    * Lightweight URL-Safe Base64 / LZ compression helper
@@ -203,7 +207,7 @@
     },
 
     saveInvitationOnline: async function (record) {
-      const response = await fetch('/api/invitations', {
+      const response = await fetch(invitationApiUrl(''), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -219,7 +223,7 @@
     },
 
     getInvitationOnline: async function (id) {
-      const response = await fetch(`/api/invitations/${encodeURIComponent(id)}`, { cache: 'no-store' });
+      const response = await fetch(invitationApiUrl(`/${encodeURIComponent(id)}`), { cache: 'no-store' });
       if (response.status === 404) return null;
       if (!response.ok) throw new Error(`Invitation lookup failed (${response.status})`);
       return response.json();
