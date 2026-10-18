@@ -48,6 +48,15 @@
     .audio-pill {
       box-shadow: 0 4px 15px rgba(6, 182, 212, 0.25);
     }
+    .countdown-panel {
+      background: radial-gradient(ellipse at 50% -30%, rgba(245, 158, 11, .17), transparent 65%), linear-gradient(145deg, rgba(30, 25, 24, .96), rgba(15, 23, 42, .96));
+      border: 1px solid rgba(251, 191, 36, .25);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .24), inset 0 1px rgba(255, 255, 255, .04);
+    }
+    .countdown-unit {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .025));
+      border: 1px solid rgba(255, 255, 255, .09);
+    }
   </style>
 </head>
 
@@ -85,13 +94,13 @@
 
   <!-- Interactive Opening Envelope (Shown initially, tap to unfold) -->
   <div id="envelope-teaser-container" class="max-w-md mx-auto px-4 pt-6 pb-2 text-center space-y-4">
-    <div class="envelope-wrapper relative bg-gradient-to-b from-amber-900/60 to-slate-950 p-6 rounded-3xl border border-amber-500/30 shadow-2xl space-y-4 cursor-pointer group hover:border-amber-400/50 transition-all"
-         id="interactive-envelope-btn">
+    <div class="envelope-wrapper relative bg-gradient-to-b from-amber-900/60 to-slate-950 p-6 rounded-3xl border border-amber-500/30 shadow-2xl space-y-4 cursor-pointer group hover:border-amber-400/50 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300"
+         id="interactive-envelope-btn" role="button" tabindex="0" aria-expanded="false" aria-label="Open your invitation">
       <div class="text-4xl animate-bounce">💌</div>
       <div class="space-y-1">
         <span class="text-[10px] uppercase font-bold tracking-widest text-amber-400">Exclusive Event Invitation</span>
         <h2 id="envelope-guest-title" class="text-lg font-bold text-white font-heading">You Have Received an Invitation!</h2>
-        <p class="text-xs text-slate-400">Tap the wax seal below to reveal the celebration experience</p>
+        <p class="text-xs text-slate-300">A little something special is waiting inside. Tap to open.</p>
       </div>
 
       <!-- Wax Seal Button -->
@@ -101,7 +110,7 @@
         </div>
       </div>
       <div class="text-[11px] font-semibold text-amber-300 tracking-wide">
-        Tap to Open Invitation &rarr;
+        Open your invitation &rarr;
       </div>
     </div>
   </div>
@@ -117,27 +126,30 @@
     </div>
 
     <!-- Section 2: Live Event Countdown Timer -->
-    <div id="countdown-card" class="studio-card p-4 rounded-2xl text-center space-y-2 max-w-[380px] mx-auto">
-      <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Countdown to the Celebration</div>
-      <div class="grid grid-cols-4 gap-2 text-center">
-        <div class="p-2 bg-slate-900/80 rounded-xl border border-slate-800">
-          <div id="count-days" class="text-lg font-bold text-cyan-400">--</div>
-          <div class="text-[9px] text-slate-400 uppercase">Days</div>
+    <section id="countdown-card" class="countdown-panel p-5 sm:p-6 rounded-3xl text-center space-y-4 max-w-[380px] mx-auto" aria-label="Event countdown">
+      <div class="space-y-1">
+        <div id="countdown-eyebrow" class="text-[10px] uppercase font-bold text-amber-300 tracking-[.2em]">The big day is getting closer</div>
+        <p id="countdown-message" class="text-sm text-slate-300">Counting down to your celebration</p>
+      </div>
+      <div id="countdown-units" class="grid grid-cols-4 gap-2 text-center" role="timer" aria-live="off">
+        <div class="countdown-unit p-3 rounded-2xl">
+          <div id="count-days" class="text-2xl sm:text-3xl font-bold tabular-nums text-amber-200">--</div>
+          <div class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">Days</div>
         </div>
-        <div class="p-2 bg-slate-900/80 rounded-xl border border-slate-800">
-          <div id="count-hours" class="text-lg font-bold text-cyan-400">--</div>
-          <div class="text-[9px] text-slate-400 uppercase">Hours</div>
+        <div class="countdown-unit p-3 rounded-2xl">
+          <div id="count-hours" class="text-2xl sm:text-3xl font-bold tabular-nums text-amber-200">--</div>
+          <div class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">Hours</div>
         </div>
-        <div class="p-2 bg-slate-900/80 rounded-xl border border-slate-800">
-          <div id="count-mins" class="text-lg font-bold text-cyan-400">--</div>
-          <div class="text-[9px] text-slate-400 uppercase">Mins</div>
+        <div class="countdown-unit p-3 rounded-2xl">
+          <div id="count-mins" class="text-2xl sm:text-3xl font-bold tabular-nums text-amber-200">--</div>
+          <div class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">Minutes</div>
         </div>
-        <div class="p-2 bg-slate-900/80 rounded-xl border border-slate-800">
-          <div id="count-secs" class="text-lg font-bold text-cyan-400">--</div>
-          <div class="text-[9px] text-slate-400 uppercase">Secs</div>
+        <div class="countdown-unit p-3 rounded-2xl">
+          <div id="count-secs" class="text-2xl sm:text-3xl font-bold tabular-nums text-amber-200">--</div>
+          <div class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">Seconds</div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Section 3: Primary Guest Actions -->
     <div class="grid grid-cols-2 gap-2.5 max-w-[380px] mx-auto text-xs">
@@ -363,13 +375,21 @@
       // 1. Envelope Opening Animation
       const envelopeBtn = document.getElementById('interactive-envelope-btn');
       const envelopeContainer = document.getElementById('envelope-teaser-container');
-      envelopeBtn?.addEventListener('click', () => {
+      function openInvitation() {
         envelopeBtn.classList.add('scale-95', 'opacity-50');
+        envelopeBtn.setAttribute('aria-expanded', 'true');
         setTimeout(() => {
           envelopeContainer.style.display = 'none';
           window.scrollTo({ top: 0, behavior: 'smooth' });
           showToast('Welcome to the celebration! ✨');
         }, 300);
+      }
+      envelopeBtn?.addEventListener('click', openInvitation);
+      envelopeBtn?.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openInvitation();
+        }
       });
 
       // 2. Web Audio Ambient Celebration Chime Synthesizer
@@ -545,34 +565,81 @@
         whatsappWishesBtn.href = `https://wa.me/?text=${wishText}`;
       }
 
-      // 10. Live Countdown Timer
+      // 10. Live Countdown Timer. Event dates are interpreted in the viewer's local time.
       function getEventTargetTimestamp() {
-        if (eventData && eventData.date) {
-          const cleanDateStr = eventData.date.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
-          const parsed = Date.parse(cleanDateStr);
-          if (!isNaN(parsed)) return parsed;
+        const rawDate = String(eventData.date || '').trim();
+        if (!rawDate) return null;
+
+        const cleanDate = rawDate.replace(/(\d+)(st|nd|rd|th)\b/gi, '$1');
+        let year, month, day;
+        let match = cleanDate.match(/\b(\d{4})-(\d{1,2})-(\d{1,2})\b/);
+        if (match) {
+          year = Number(match[1]); month = Number(match[2]) - 1; day = Number(match[3]);
+        } else if ((match = cleanDate.match(/\b(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})\b/))) {
+          // Numeric dates follow the day/month/year convention used by the invitation studio.
+          day = Number(match[1]); month = Number(match[2]) - 1; year = Number(match[3]);
+        } else {
+          const parsed = Date.parse(cleanDate);
+          if (Number.isNaN(parsed)) return null;
+          const date = new Date(parsed);
+          year = date.getFullYear(); month = date.getMonth(); day = date.getDate();
+          if (!/\b\d{4}\b/.test(cleanDate)) {
+            const now = new Date();
+            year = now.getFullYear();
+          }
         }
-        // Fallback: 30 days in future
-        return Date.now() + 30 * 24 * 60 * 60 * 1000;
+
+        const timeMatch = String(eventData.time || '').match(/\b(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?)?\b/i);
+        let hours = 0, minutes = 0;
+        if (timeMatch) {
+          hours = Number(timeMatch[1]); minutes = Number(timeMatch[2] || 0);
+          const meridiem = (timeMatch[3] || '').replace(/\./g, '').toLowerCase();
+          if (meridiem === 'pm' && hours < 12) hours += 12;
+          if (meridiem === 'am' && hours === 12) hours = 0;
+          if (hours > 23 || minutes > 59) { hours = 0; minutes = 0; }
+        }
+
+        let target = new Date(year, month, day, hours, minutes, 0, 0);
+        if (target.getFullYear() !== year || target.getMonth() !== month || target.getDate() !== day) return null;
+        if (!/\b\d{4}\b/.test(cleanDate) && target.getTime() <= Date.now()) {
+          target = new Date(year + 1, month, day, hours, minutes, 0, 0);
+        }
+        return target.getTime();
       }
+
+      const countdownUnits = document.getElementById('countdown-units');
+      const countdownMessage = document.getElementById('countdown-message');
+      const countdownEyebrow = document.getElementById('countdown-eyebrow');
       const targetDate = getEventTargetTimestamp();
 
       function updateCountdown() {
-        const now = Date.now();
-        const diff = Math.max(0, targetDate - now);
+        if (!targetDate) {
+          countdownUnits.classList.add('hidden');
+          countdownEyebrow.textContent = 'A moment to remember';
+          countdownMessage.textContent = eventData.date ? `We can't set a timer for “${eventData.date}” just yet.` : 'The hosts will share the celebration date soon.';
+          return;
+        }
+        const diff = targetDate - Date.now();
+        if (diff <= 0) {
+          countdownUnits.classList.add('hidden');
+          countdownEyebrow.textContent = 'Today is the day';
+          countdownMessage.textContent = 'The celebration is underway! Enjoy every moment ✨';
+          if (countdownTimer) clearInterval(countdownTimer);
+          return;
+        }
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / 1000 / 60) % 60);
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff / 3600000) % 24);
+        const mins = Math.floor((diff / 60000) % 60);
         const secs = Math.floor((diff / 1000) % 60);
-
-        document.getElementById('count-days').textContent = days;
-        document.getElementById('count-hours').textContent = hours;
-        document.getElementById('count-mins').textContent = mins;
-        document.getElementById('count-secs').textContent = secs;
+        document.getElementById('count-days').textContent = String(days).padStart(2, '0');
+        document.getElementById('count-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('count-mins').textContent = String(mins).padStart(2, '0');
+        document.getElementById('count-secs').textContent = String(secs).padStart(2, '0');
       }
-      setInterval(updateCountdown, 1000);
+      let countdownTimer = null;
       updateCountdown();
+      if (targetDate && targetDate > Date.now()) countdownTimer = setInterval(updateCountdown, 1000);
 
       // 11. Host Dashboard & Guest List Management
       function refreshHostRsvps() {
