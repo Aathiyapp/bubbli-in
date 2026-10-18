@@ -343,6 +343,13 @@
           console.warn('Could not load invitation from online storage.', error);
         }
       }
+      // A legacy long link already contains all the invitation data, so save it online
+      // once the API is configured. The same invitation can then use its short ID link.
+      if (record && compressedData) {
+        BubbliStorage.saveInvitationOnline(record).catch((error) => {
+          console.info('Invitation short-link migration will retry when online storage is available.', error);
+        });
+      }
 
       let template = null;
       let eventData = null;
